@@ -1,7 +1,7 @@
 ---
 layout: doc
 title: Complete OnePlus Rooting Guide
-description: "Master guide to root all OnePlus devices - OnePlus 12, 11, 10, Nord series with bootloader unlock and Magisk installation for OxygenOS."
+description: "Master guide to root all OnePlus devices - OnePlus 15, 13, 12, 11, 10, Nord series with bootloader unlock and Magisk installation for OxygenOS."
 head:
   - - link
     - rel: canonical
@@ -61,7 +61,7 @@ head:
 
 # OnePlus Root Guide
 
-Root OnePlus devices with straightforward bootloader unlock. Covers OxygenOS and ColorOS, OnePlus 12, 11, 10, 9, Nord series, and legacy devices.
+Root OnePlus devices with straightforward bootloader unlock. Covers OxygenOS and ColorOS, OnePlus 15, 13, 12, 11, 10, 9, Nord series, and legacy devices.
 
 ## Quick Navigation
 
@@ -77,85 +77,6 @@ Root OnePlus devices with straightforward bootloader unlock. Covers OxygenOS and
 - [Magisk Guide](./magisk-guide.md) - Complete Magisk documentation
 
 ---
-
-## Supported Devices
-
-<details><summary>Click to expand device list</summary>
-
-### OnePlus Flagship Series
-
-**OnePlus 12 (2024):**
-- ColorOS/OxygenOS 14
-- Snapdragon 8 Gen 3
-- Uses init_boot.img
-- Active development
-
-**OnePlus 11 (2023):**
-- OxygenOS 13
-- Snapdragon 8 Gen 2
-- Uses init_boot.img
-- Excellent support
-
-**OnePlus 10 Pro/10T (2022):**
-- ColorOS-based OxygenOS
-- Snapdragon 8 Gen 1/+
-- Transition to OPPO codebase
-- Good community support
-
-**OnePlus 9 Series (2021):**
-- OnePlus 9 Pro / 9 / 9R
-- OxygenOS 11/12
-- Excellent custom ROM options
-- Strong TWRP support
-
-**OnePlus 8 Series (2020):**
-- OnePlus 8 Pro / 8 / 8T
-- Mature rooting support
-- Many ROMs available
-- Stable TWRP
-
-**Older Flagships:**
-- OnePlus 7/7 Pro/7T
-- OnePlus 6/6T
-- OnePlus 5/5T
-- OnePlus 3/3T
-- Full custom ROM support
-
-### OnePlus Nord Series
-
-**Nord 3/2T/2 (2023-2022):**
-- Mid-range with good support
-- ColorOS-based
-- Growing development
-
-**Nord CE 3/2/1 (Various):**
-- Budget-friendly
-- Basic root support
-- Limited ROMs
-
-**Nord N Series:**
-- Entry-level OnePlus
-- Varies by region
-- Check XDA for support
-
-### Regional Variants
-
-**Global/International:**
-- Best developer support
-- Easiest to root
-- Most ROMs available
-
-**T-Mobile (US):**
-- Some models locked
-- Verify unlock capability
-- May require SIM unlock
-
-**China/India:**
-- Different firmware
-- May need conversion
-- Check compatibility
-
-</details>
 
 ## Prerequisites
 
@@ -191,14 +112,18 @@ Root OnePlus devices with straightforward bootloader unlock. Covers OxygenOS and
    - Or download from OnePlus site
 
 3. **Stock Firmware** (for recovery)
-   - Download from [OnePlus Downloads](https://www.oneplus.com/support)
-   - Or [XDA Forums](https://xdaforums.com/)
+   - Download via [Oxygen Updater](https://play.google.com/store/apps/details?id=com.arjanvlek.oxygenupdater) (Recommended)
+   - Or [XDA Forums](https://xdaforums.com/) (Alternative)
 
 **On Device:**
 
 1. **Magisk APK**
    - Download: [Magisk GitHub](https://github.com/topjohnwu/Magisk/releases)
    - Latest stable version
+
+::: tip Alternative Root Methods
+For the OnePlus 15 and 13 series, **KernelSU** is recommended instead of Magisk. KernelSU patches the kernel directly and is often more successful at bypassing the latest Play Integrity (Strong Integrity) checks.
+:::
 
 2. **File Manager**
    - OxygenOS Files app
@@ -290,33 +215,54 @@ Or check on device boot:
 ### Determine Correct Image
 
 | Device | Android Version | Image to Patch | Notes |
-|--------|-----------------|----------------|-------|
-| OnePlus 12 | Android 14 | init_boot.img | ColorOS base |
-| OnePlus 11 | Android 13 | init_boot.img | OxygenOS 13 |
-| OnePlus 10 series | Android 12/13 | init_boot.img | ColorOS transition |
-| OnePlus 9 series | Android 11+ | boot.img or init_boot.img | Check Magisk app |
-| OnePlus 8 series | Android 10/11 | boot.img | OxygenOS 11 |
-| Older OnePlus | Android 10 and below | boot.img | Legacy OxygenOS |
+| --- | --- | --- | --- |
+| **OnePlus 15 / 15R** | Android 15 / 16 | `init_boot.img` | 2026 Flagships; Snapdragon 8 Gen 5 / 8s Gen 4 |
+| **OnePlus 13 / 13R** | Android 15 | `init_boot.img` | 2025 Flagships; uses GKI 2.0 |
+| **OnePlus Open 1 / 2** | Android 14 / 15 | `init_boot.img` | Foldable series; requires specific Magisk versions for UI |
+| **OnePlus 12 / 12R** | Android 14 / 15 | `init_boot.img` | Transitioned to unified OxygenOS/ColorOS base |
+| **OnePlus 11 / 11R** | Android 13 / 14 / 15 | `init_boot.img` | Snapdragon 8 Gen 2; standard GKI layout |
+| **Nord 5 / 6 Series** | Android 15 / 16 | `init_boot.img` | Latest mid-range (Nord 6 / CE 6 / Nord 5) |
+| **Nord 4 / CE 4** | Android 14 | `init_boot.img` | Mid-range 2024 releases |
+| **OnePlus 10 Pro / 10T** | Android 12 / 13 / 14 | `init_boot.img` | If running OOS 13+, use `init_boot`; OOS 12 uses `boot` |
+| **OnePlus 9 Series** | Android 11 / 12 / 13 | `boot.img` | Check Magisk for "Ramdisk: Yes" status |
+| **OnePlus 8 / 8T / 8 Pro** | Android 11 / 12 / 13 | `boot.img` | Legacy OxygenOS architecture |
+| **Nord 1 / 2 / 3** | Android 11 - 14 | `boot.img` | Use `boot.img` unless updated to Android 14 GKI |
 
 **Quick Check in Magisk:**
 - Install Magisk app first
 - Check "Ramdisk" field
 - "Yes" = boot.img, "No" = init_boot.img
 
+::: tip Verified Boot
+Always ensure you have a copy of the stock `vbmeta.img`. When flashing a patched image on newer OxygenOS versions, you may need to disable verity using:
+`fastboot --disable-verity --disable-verification flash vbmeta vbmeta.img`
+:::
+
+---
+
 ### Method 1: Boot Image Patching (Recommended)
 
 **Step 1: Download Stock Firmware**
 
-For OxygenOS:
-1. Visit [OnePlus Downloads](https://www.oneplus.com/support)
-2. Find your model
-3. Download OxygenOS ROM (Full Package)
+**Using Oxygen Updater (Recommended):**
+1. Install [Oxygen Updater](https://play.google.com/store/apps/details?id=com.arjanvlek.oxygenupdater) on your device
+2. Launch app and verify device name
+3. Go to Settings > Update Method > Select "Full"
+4. Enable "Advanced Mode" in settings
+5. Return to Home tab and tap "Download Update"
+6. Firmware ZIP will be downloaded to internal storage
+7. Transfer ZIP to computer for extraction
+8. Extract payload.bin from the downloaded ZIP
+
+**Alternative Method (XDA Forums):**
+1. Visit [XDA OnePlus Forums](https://xdaforums.com/c/oneplus.11993/)
+2. Find your device section
+3. Download matching firmware
 4. Extract payload.bin
 
-For ColorOS:
-1. Visit OnePlus Downloads or XDA
-2. Download matching firmware
-3. Extract payload.bin
+::: tip WHY OXYGEN UPDATER?
+OnePlus no longer provides direct firmware downloads. Oxygen Updater is the most reliable method to get official firmware files.
+:::
 
 **Step 2: Extract Boot Image**
 
@@ -641,8 +587,12 @@ fastboot oem lock
 ## Community Resources
 
 **Official OnePlus:**
-- [OnePlus Downloads](https://www.oneplus.com/support) - Stock firmware
 - [OnePlus Forums](https://forums.oneplus.com/) - Official community
+- [OnePlus Support](https://www.oneplus.com/support) - Official support
+
+**Firmware Downloads:**
+- [Oxygen Updater](https://play.google.com/store/apps/details?id=com.arjanvlek.oxygenupdater) - Primary firmware source (App)
+- [Oxygen Updater GitHub](https://github.com/oxygen-updater/oxygen-updater) - Alternative download
 
 **Developer Community:**
 - [XDA OnePlus Forums](https://xdaforums.com/c/oneplus.11993/) - Device discussions

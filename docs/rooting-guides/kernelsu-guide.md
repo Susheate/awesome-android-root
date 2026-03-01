@@ -20,7 +20,7 @@ head:
       content: https://awesome-android-root.org/rooting-guides/kernelsu-guide
   - - meta
     - property: og:image
-      content: https://awesome-android-root.org/images/og/kernelsu-guide-2026.png
+      content: https://awesome-android-root.org/images/og/kernelsu-guide.png
   - - meta
     - name: twitter:card
       content: summary_large_image
@@ -101,7 +101,7 @@ head:
       content: "Ultimate KernelSU guide for 2026! Learn to install KernelSU & KernelSU Next, manage kernel-based root, modules, app profiles. Step-by-step tutorial for Android 4.4+ devices."
   - - meta
     - name: twitter:image
-      content: https://awesome-android-root.org/images/og/kernelsu-guide-2026.png
+      content: https://awesome-android-root.org/images/og/kernelsu-guide.png
   - - meta
     - name: twitter:image:alt
       content: KernelSU Guide 2026 - Complete Installation Tutorial
@@ -122,7 +122,7 @@ head:
           "@type": "TechArticle",
           "headline": "KernelSU Guide 2026 | Awesome Android Root",
           "description": "Ultimate KernelSU guide for 2026! Learn to install KernelSU & KernelSU Next, manage kernel-based root, modules, app profiles. Step-by-step tutorial for Android 4.4+ devices.",
-          "image": "https://awesome-android-root.org/images/og/kernelsu-guide-2026.png",
+          "image": "https://awesome-android-root.org/images/og/kernelsu-guide.png",
           "author": {
             "@type": "Organization",
             "name": "Awesome Android Root Project",
@@ -824,7 +824,6 @@ A metamodule is a special type of KernelSU module that provides core infrastruct
 | [meta-overlayfs](https://github.com/KernelSU-Modules-Repo/meta-overlayfs) | Official reference implementation using OverlayFS | Most users, standard setup |
 | [mountify](https://github.com/backslashxx/mountify) | OverlayFS with tmpfs/ext4 sparse support, works on APatch/Magisk too | Reduced detection, multi-root support |
 | [meta-magic_mount](https://github.com/7a72/meta-magic_mount) ([Mirror](https://codeberg.org/ovo/meta-magic_mount)) | Magic Mount implementation in C with WebUI support | Magisk-style mounting, official KSU branch support |
-| [meta-magic_mount (Rust)](https://github.com/Tools-cx-app/meta-magic_mount) | Rust-based Magic Mount with WebUI and active development | Enhanced performance, modern codebase |
 | [meta-hybrid_mount](https://github.com/YuzakiKokuban/meta-hybrid_mount) | Dual engine (OverlayFS + Magic Mount) with conflict monitor, diagnostics & auto-fallback | Maximum compatibility, advanced control, stealth mode |
 
 ::: tip RECOMMENDATION
@@ -853,6 +852,14 @@ The active metamodule will be displayed in your module list with a special desig
 **Module locations:**
 - Metadata: `/data/adb/modules/` - Contains module.prop, disable, skip_mount markers
 - Content: `/data/adb/metamodule/mnt/` - Contains actual module files (when using meta-overlayfs)
+
+### Advanced Module Support
+
+**KPM (KernelSU Patch Module) Support:**
+
+If you need to run kernel patch modules that require KPM functionality, you can use:
+
+- **[KPatch Next Module](https://github.com/KernelSU-Next/KPatch-Next-Module)** - Standalone implementation of KPM support for both Magisk and KernelSU with WebUI interface for advanced kernel patching capabilities.
 
 ### Installing Regular Modules Modules
 
